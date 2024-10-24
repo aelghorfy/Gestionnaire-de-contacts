@@ -1,0 +1,29 @@
+
+{
+    "contacts": [
+        {
+            "contact": {
+                "id": "1",
+                "nom": "Aymare",
+                "prenom": "Jean",
+                "telephone": "06 85 45 69 95"
+            }
+        },
+        {
+            "contact": {
+                "id": "2",
+                "nom": "Ricault",
+                "prenom": "Léa",
+                "telephone": "06 28 32 78 65"
+            }
+        },
+        {
+            "contact": {
+                "id": "3",
+                "nom": "Zetteaufré",
+                "prenom": "Mélanie",
+                "telephone": "07 35 78 46 22"
+            }
+        }
+    ]
+}

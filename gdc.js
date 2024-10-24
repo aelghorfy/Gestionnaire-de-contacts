@@ -2,7 +2,7 @@ document.getElementById("iconLancement").addEventListener("click", function() {
     // cacher icone après clic
     document.getElementById("iconLancement").style.display = "none";
     
-    // cfficher le menu
+    // afficher le menu
     document.getElementById("menuGestionnaire").style.display = "block";
     
     // fonction pour menu déroulant
@@ -42,7 +42,7 @@ function afficherMenu() {
     // ajouter select a la page
     menuDiv.appendChild(select);
 
-    // ecouteur event pour reagir au changement d'option
+    // reagir au changement d'option
     select.addEventListener("change", function() {
         const choix = select.value;
 
@@ -57,10 +57,9 @@ function afficherPage(choix) {
     contentDiv.style.display = "block"; // affiche le choix
     contentDiv.innerHTML = ""; // efface le contenu d'avant
 
-
     switch (choix) {
         case "lister":
-            listerContacts();
+            fetchEtListerContacts();
             break;
         case "ajouter":
             ajouterContact();
@@ -71,36 +70,55 @@ function afficherPage(choix) {
     }
 }
 
-
-// lister les contacts
-function listerContacts() {
+function listerContacts(contacts) {
+    console.log("Contacts to list:", contacts); // contactes à lister
     const contentDiv = document.getElementById("content");
+    contentDiv.innerHTML = ''; // effacer contenu precedent
+
     const titre = document.createElement("h2");
     titre.textContent = "Liste des Contacts";
     contentDiv.appendChild(titre);
-    
-    // charger et afficher les contacts depuis XML (expliquée pendant le cours)
-    fetch('./gdc.xml')
-    .then(response => response.text())
-    .then(xmlText => {
-        const parser = new DOMParser();
-        const xmlDoc = parser.parseFromString(xmlText, "text/xml");
-        const contacts = xmlDoc.getElementsByTagName("contact");
 
-        for (let i = 0; i < contacts.length; i++) {
-            const contact = contacts[i];
-            const prenom = contact.getElementsByTagName("prenom")[0].textContent;
-            const nom = contact.getElementsByTagName("nom")[0].textContent;
-            const numero = contact.getElementsByTagName("numero")[0].textContent;
-
-            const contactDiv = document.createElement('div');
-            contactDiv.innerHTML = `<p>${prenom} ${nom}</p>
-                                    <p>${numero}</p>`;
-            contentDiv.appendChild(contactDiv);
-        }
-    }).catch(error => console.log(error));
+    const ul = document.createElement("ul");
+    contacts.forEach(item => {
+        const contact = item.contact;
+        const li = document.createElement("li");
+        li.textContent = `${contact.nom} ${contact.prenom} - ${contact.telephone}`;
+        ul.appendChild(li);
+    });
+    contentDiv.appendChild(ul);
 }
 
+async function myJson(url) {
+    const raiponce = await fetch(url);
+    if (!raiponce.ok) {
+        throw new Error("le fichier n'a pas pu être trouvé");
+    }
+    const data = await raiponce.json();
+    console.log("data fetch:", data);
+    return data;
+}
+
+function fetchEtListerContacts() {
+    myJson('gdc.json')
+        .then(data => {
+            if (data && data.contacts) {
+                listerContacts(data.contacts); // afficher le tableau contacts sur la fonction
+            } else {
+                console.error("Le fichier JSON ne contient pas de contacts.");
+            }
+        })
+        .catch(error => {
+            console.error("L'operation fetch a rencontré un problème:", error);
+        });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    //Fetch et lister les contacts
+    fetchEtListerContacts();
+});
+
+    
 // fonction pour ajouter des contacts
 function ajouterContact() {
     const contentDiv = document.getElementById("content");
@@ -145,18 +163,4 @@ function afficherNombreContacts() {
     const titre = document.createElement("h2");
     titre.textContent = "Nombre de Contacts";
     contentDiv.appendChild(titre);
-
-    // charger et compter les contacts depuis XML
-    fetch('./contacts.xml')
-    .then(response => response.text())
-    .then(xmlText => {
-        const parser = new DOMParser();
-        const xmlDoc = parser.parseFromString(xmlText, "text/xml");
-        const contacts = xmlDoc.getElementsByTagName("contact");
-
-        const nombreContacts = contacts.length;
-        const p = document.createElement("p");
-        p.textContent = `Vous avez ${nombreContacts} contacts.`;
-        contentDiv.appendChild(p);
-    }).catch(error => console.log(error));
 }
