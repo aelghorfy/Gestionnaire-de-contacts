@@ -1,4 +1,5 @@
 let contacts = []; 
+
 async function myJson(url) {
     const response = await fetch(url);
     if (!response.ok) {
@@ -6,7 +7,10 @@ async function myJson(url) {
     }
     const data = await response.json();
     console.log("Données fetchées:", data);
-    contacts = data.contacts && []; 
+
+    if (data.contacts) {
+        contacts = data.contacts; 
+    }
     console.log("Contacts chargés:", contacts);
     return data;
 }
@@ -79,21 +83,28 @@ function ajouterContact() {
             
             // Envoie des données au serveur
             fetch('http://localhost:3000/ajouter-contact', {
+
+                //method atendue par le serveur (voir server.js l14)
                 method: 'POST',
+                //information importante pour que le server notament le type de fichier
                 headers: {
                     'Content-Type': 'application/json',
                 },
+                //contenu de la requete 
                 body: JSON.stringify(newContact),
             })
+
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Erreur lors de l\'ajout du contact');
                 }
-                return response.text();
+                return response.text();//transforme la reponse en chaine de charactère
             })
+
+            //message = responsetext()
             .then(message => {
-                console.log(message);
-                contacts.push(newContact); // Ajoutez le contact localement
+                console.log("message :" + message);
+                contacts.push(newContact); 
                 listerContacts(contacts); 
                 alert("Nouveau contact ajouté avec succès");
             })
