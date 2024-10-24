@@ -1,3 +1,5 @@
+let contacts = [];
+
 document.getElementById("iconLancement").addEventListener("click", function() {
     // cacher icone après clic
     document.getElementById("iconLancement").style.display = "none";
@@ -147,14 +149,26 @@ function ajouterContact() {
 
     contentDiv.appendChild(form);
 
-    option.addEventListener("click", function(e) {
+    btnAjouter.addEventListener("click", function(e) {
         e.preventDefault(); // empeche le rechargement de la page
         const prenom = prenomInput.value;
         const nom = nomInput.value;
         const numero = numeroInput.value;
+        const newContact = {
+            nom: nom,
+            prenom: prenom,
+            telephone: numero,
+        };
 
-        console.log(`Nouveau contact: ${prenom} ${nom}, ${numero}`);
+        // Ajouter le nouveau contact à la liste en mémoire
+        contacts.push({ contact: newContact });
+
+        // Re-lister les contacts après ajout
+        listerContacts(contacts);
+
+        console.log("Nouveau contact ajouté", newContact);
     });
+
 }
 
 // fonction afficher le nombre de contacts
@@ -163,4 +177,8 @@ function afficherNombreContacts() {
     const titre = document.createElement("h2");
     titre.textContent = "Nombre de Contacts";
     contentDiv.appendChild(titre);
+    const nbContacts = contacts.length; // Nombre de contacts
+    const p = document.createElement("p");
+    p.textContent = `Il y a ${nbContacts} contacts dans la liste.`;
+    contentDiv.appendChild(p);
 }
