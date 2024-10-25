@@ -166,10 +166,14 @@ document.getElementById("iconLancement").addEventListener("click", function(e) {
     
  
     document.getElementById("menuGestionnaire").style.display = "block";
+    e.preventDefault();
     });
 
 }
-afficherMenu
+icon();
+
+afficherMenu();
+
 function afficherMenu() {
     const menuDiv = document.getElementById("menuGestionnaire");
     /* document.getElementById("iconRegulier") */
