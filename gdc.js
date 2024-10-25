@@ -61,30 +61,55 @@ function ajouterContact() {
 
     const form = document.createElement("form");
 
+    form.style.backgroundColor = "#DDDDDD";
+    form.style.borderRadius = "10px";
+    form.style.width = "35%";
+    form.style.marginLeft = "33%";
+    form.style.height = "55vh";
+
+
     const prenomInput = document.createElement("input");
     prenomInput.placeholder = "Prénom";
     form.appendChild(prenomInput);
+    prenomInput.style.marginTop = "15%";
+
+    const brInput = document.createElement("br");
+    form.appendChild(brInput);
 
     const nomInput = document.createElement("input");
     nomInput.placeholder = "Nom";
     form.appendChild(nomInput);
+    nomInput.style.marginTop = "10%";
+
+    const brInput1 = document.createElement("br");
+    form.appendChild(brInput1);
 
     const numeroInput = document.createElement("input");
     numeroInput.placeholder = "Numéro de téléphone";
     form.appendChild(numeroInput);
+    numeroInput.style.marginTop = "10%";
+
+    const brInput2 = document.createElement("br");
+    form.appendChild(brInput2);
 
     const btnAjouter = document.createElement("button");
+    btnAjouter.type = "button";
+   
     btnAjouter.textContent = "Ajouter";
     form.appendChild(btnAjouter);
+    btnAjouter.style.width = "50%";
+    btnAjouter.style.marginTop = "10%";
+    btnAjouter.style.backgroundColor = "#B22430";
+    btnAjouter.style.color = "white";
 
     form.style.textAlign = "center";
-   
+   contentDiv.innerHTML = "";
    
 
     contentDiv.appendChild(form);
 
     btnAjouter.addEventListener("click", function(e) {
-        e.preventDefault(); 
+        e.preventDefault();
         const prenom = prenomInput.value;
         const nom = nomInput.value;
         const numero = numeroInput.value;
@@ -132,25 +157,24 @@ function ajouterContact() {
         } else {
             alert("Tous les champs sont obligatoires !");
         }
-    });
+    }); 
 }
-
-document.getElementById("iconLancement").addEventListener("click", function() {
+function icon() {
+document.getElementById("iconLancement").addEventListener("click", function(e) {
     
     document.getElementById("iconLancement").style.display = "none";
     
  
     document.getElementById("menuGestionnaire").style.display = "block";
-    
-    afficherMenu();
-});
+    });
 
+}
+afficherMenu
 function afficherMenu() {
     const menuDiv = document.getElementById("menuGestionnaire");
-
+    /* document.getElementById("iconRegulier") */
    
     menuDiv.innerHTML = "";
-
     
     const titre = document.createElement("h1");
     titre.textContent = "Gestionnaire de Contacts";
@@ -227,5 +251,10 @@ function afficherNombreContacts() {
     const p = document.createElement("p");
     p.textContent = `Il y a ${nbContacts} contact(s) dans la liste.`;
     p.style.textAlign = "center";
+    p.style.backgroundColor = "#DDDDDD";
+    p.style.borderRadius = "10px";
+    p.style.width = "35%";
+    p.style.marginLeft = "33%";
+    p.style.height = "10vh";
     contentDiv.appendChild(p);
 }
