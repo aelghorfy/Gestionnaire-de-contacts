@@ -173,7 +173,11 @@ document.getElementById("iconLancement").addEventListener("click", function(e) {
 icon();
 
 afficherMenu();
-
+const bordure = document.getElementById("bordure");
+bordure.style.border = "2px solid black";
+bordure.style.height = "90vh";
+bordure.style.width = "60vh";
+bordure.style.margin = "auto";
 function afficherMenu() {
     const menuDiv = document.getElementById("menuGestionnaire");
     /* document.getElementById("iconRegulier") */
@@ -185,12 +189,17 @@ function afficherMenu() {
     titre.style.color = "#B22430";
     menuDiv.style.textAlign = "center";
     menuDiv.appendChild(titre);
-
+    
+    const img = document.createElement('img');
+    img.src = 'icon.PNG';
+    menuDiv.appendChild(img);
+    img.style.display = "flex";
+    img.style.marginLeft = "35%";
+    img.style.height = "35vh";
     
     const select = document.createElement("select");
     select.id = "menuOptions";
 
-   
     const options = [
         { value: "", text: "Que voulez vous faire" }, // Option par défaut
         { value: "lister", text: "Lister les contacts" },
