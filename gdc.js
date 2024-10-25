@@ -114,6 +114,7 @@ function ajouterContact() {
                     throw new Error('Erreur lors de l\'ajout du contact');
                 }
                 return response.text();//transforme la reponse en chaine de charactère
+    
             })
 
             //message = responsetext()
@@ -122,6 +123,7 @@ function ajouterContact() {
                 contacts.push(newContact); 
                 listerContacts(contacts); 
                 alert("Nouveau contact ajouté avec succès");
+
             })
             .catch(error => {
                 console.error(error);
