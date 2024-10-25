@@ -31,6 +31,7 @@ function listerContacts(contacts) {
     contentDiv.innerHTML = ''; 
     const titre = document.createElement("h2");
     titre.textContent = "Liste des Contacts";
+    titre.style.color = "#B22430";
     contentDiv.appendChild(titre);
 
     const ul = document.createElement("ul");
@@ -46,6 +47,7 @@ function ajouterContact() {
     const contentDiv = document.getElementById("content");
     const titre = document.createElement("h2");
     titre.textContent = "Ajouter un Nouveau Contact";
+    titre.style.color = "#B22430";
     contentDiv.appendChild(titre);
 
     const form = document.createElement("form");
@@ -137,6 +139,7 @@ function afficherMenu() {
     
     const titre = document.createElement("h1");
     titre.textContent = "Gestionnaire de Contacts";
+    titre.style.color = "#B22430";
     menuDiv.appendChild(titre);
 
     
@@ -199,6 +202,7 @@ function afficherNombreContacts() {
     const contentDiv = document.getElementById("content");
     const titre = document.createElement("h2");
     titre.textContent = "Nombre de Contacts";
+    titre.style.color = "#B22430";
     contentDiv.appendChild(titre);
 
     const nbContacts = contacts.length; 
