@@ -11,11 +11,9 @@ document.getElementById("iconLancement").addEventListener("click", function() {
 
 function afficherMenu() {
     const menuDiv = document.getElementById("menuGestionnaire");
+    menuDiv.innerHTML = ""; // effacer le contenu pour "nvl" page
+    menuDiv.style.textAlign = "center"; // Centre le contenu du menu
 
-    // effacer le contenu pour "nvl" page
-    menuDiv.innerHTML = "";
-
-    // titre
     const titre = document.createElement("h1");
     titre.textContent = "Gestionnaire de Contacts";
     menuDiv.appendChild(titre);
@@ -24,9 +22,11 @@ function afficherMenu() {
     const select = document.createElement("select");
     select.id = "menuOptions";
 
+    select.style.backgroundColor = "#8B0000"; // Fond rouge
+    select.style.color = "white";
     // options menu déroulant
     const options = [
-        { value: "", text: "Sélectionnez une option" }, // Option par défaut
+        { value: "", text: "Que voulez vous faire" }, // Option par défaut
         { value: "lister", text: "Lister les contacts" },
         { value: "ajouter", text: "Ajouter un contact" },
         { value: "nombre", text: "Nombre de contacts" }
@@ -45,7 +45,6 @@ function afficherMenu() {
     // reagir au changement d'option
     select.addEventListener("change", function() {
         const choix = select.value;
-
         if (choix) {
             afficherPage(choix); // affiche la page choisie
         }
@@ -55,7 +54,8 @@ function afficherMenu() {
 function afficherPage(choix) {
     const contentDiv = document.getElementById("content");
     contentDiv.style.display = "block"; // affiche le choix
-    contentDiv.innerHTML = ""; // efface le contenu d'avant
+    contentDiv.innerHTML = ""; // efface le contenu precedent
+    contentDiv.style.textAlign = "center"; // Centrer
 
     switch (choix) {
         case "lister":
@@ -71,7 +71,6 @@ function afficherPage(choix) {
 }
 
 function listerContacts(contacts) {
-    console.log("Contacts to list:", contacts); // contactes à lister
     const contentDiv = document.getElementById("content");
     contentDiv.innerHTML = ''; // effacer contenu precedent
 
@@ -95,7 +94,6 @@ async function myJson(url) {
         throw new Error("le fichier n'a pas pu être trouvé");
     }
     const data = await raiponce.json();
-    console.log("data fetch:", data);
     return data;
 }
 
@@ -118,8 +116,6 @@ document.addEventListener('DOMContentLoaded', () => {
     fetchEtListerContacts();
 });
 
-    
-// fonction pour ajouter des contacts
 function ajouterContact() {
     const contentDiv = document.getElementById("content");
     const titre = document.createElement("h2");
@@ -128,18 +124,35 @@ function ajouterContact() {
 
     // formulaire pour ajouter contact
     const form = document.createElement("form");
+    form.style.border = "2px solid black";
+    form.style.padding = "10px"; 
+    form.style.display = "inline-block";
+    form.style.margin = "20px auto"; 
+    
 
     const prenomInput = document.createElement("input");
     prenomInput.placeholder = "Prénom";
     form.appendChild(prenomInput);
 
+    const brInput = document.createElement("br");
+    form.appendChild(brInput);
+
+
     const nomInput = document.createElement("input");
     nomInput.placeholder = "Nom";
     form.appendChild(nomInput);
 
+    const brInput2 = document.createElement("br");
+    form.appendChild(brInput2);
+
+
     const numeroInput = document.createElement("input");
     numeroInput.placeholder = "Numéro de téléphone";
     form.appendChild(numeroInput);
+
+    const brInput3 = document.createElement("br");
+    form.appendChild(brInput3);
+
 
     const btnAjouter = document.createElement("button");
     btnAjouter.textContent = "Ajouter";
@@ -147,8 +160,9 @@ function ajouterContact() {
 
     contentDiv.appendChild(form);
 
-    option.addEventListener("click", function(e) {
-        e.preventDefault(); // empeche le rechargement de la page
+    // Ajout d'un écouteur d'événements sur le bouton "Ajouter"
+    btnAjouter.addEventListener("click", function(e) {
+        e.preventDefault(); // empêche le rechargement de la page
         const prenom = prenomInput.value;
         const nom = nomInput.value;
         const numero = numeroInput.value;
@@ -163,4 +177,19 @@ function afficherNombreContacts() {
     const titre = document.createElement("h2");
     titre.textContent = "Nombre de Contacts";
     contentDiv.appendChild(titre);
+ 
+    myJson("gdc.json")
+        .then(data => {
+            if (data && data.contacts) {
+                const nbreContact = data.contacts.length;
+                const p = document.createElement("p");
+                p.textContent = `Vous avez ${nbreContact} contact(s)`;
+                contentDiv.appendChild(p);
+            } else {
+                console.error("Le fichier JSON ne contient pas de contacts");
+            }
+        })
+        .catch(error => {
+            console.error("L'opérateur fetch a rencontré un problème :", error);
+        });
 }
