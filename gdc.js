@@ -32,6 +32,7 @@ function listerContacts(contacts) {
     const titre = document.createElement("h2");
     titre.textContent = "Liste des Contacts";
     titre.style.color = "#B22430";
+    titre.style.textAlign = "center";
     contentDiv.appendChild(titre);
 
     const ul = document.createElement("ul");
@@ -48,6 +49,7 @@ function ajouterContact() {
     const titre = document.createElement("h2");
     titre.textContent = "Ajouter un Nouveau Contact";
     titre.style.color = "#B22430";
+    titre.style.textAlign = "center";
     contentDiv.appendChild(titre);
 
     const form = document.createElement("form");
@@ -67,6 +69,10 @@ function ajouterContact() {
     const btnAjouter = document.createElement("button");
     btnAjouter.textContent = "Ajouter";
     form.appendChild(btnAjouter);
+
+    form.style.textAlign = "center";
+   
+   
 
     contentDiv.appendChild(form);
 
@@ -140,6 +146,7 @@ function afficherMenu() {
     const titre = document.createElement("h1");
     titre.textContent = "Gestionnaire de Contacts";
     titre.style.color = "#B22430";
+    menuDiv.style.textAlign = "center";
     menuDiv.appendChild(titre);
 
     
@@ -203,10 +210,12 @@ function afficherNombreContacts() {
     const titre = document.createElement("h2");
     titre.textContent = "Nombre de Contacts";
     titre.style.color = "#B22430";
+    titre.style.textAlign = "center";
     contentDiv.appendChild(titre);
 
     const nbContacts = contacts.length; 
     const p = document.createElement("p");
     p.textContent = `Il y a ${nbContacts} contact(s) dans la liste.`;
+    p.style.textAlign = "center";
     contentDiv.appendChild(p);
 }
