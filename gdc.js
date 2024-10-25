@@ -35,11 +35,18 @@ function listerContacts(contacts) {
     titre.style.textAlign = "center";
     contentDiv.appendChild(titre);
 
-    const ul = document.createElement("ul");
+    const ul = document.createElement("section");
     contacts.forEach(contact => {
-        const li = document.createElement("li");
+        const li = document.createElement("p");
         li.textContent = `${contact.nom} ${contact.prenom} - ${contact.telephone}`;
         ul.appendChild(li);
+        contentDiv.style.textAlign = "center";
+        ul.style.background = "#DDDDDD";
+        ul.style.color = "#B22430"
+        ul.style.borderRadius = "10px";
+        ul.style.width = "35%";
+        ul.style.marginLeft = "33%";
+       
     });
     contentDiv.appendChild(ul);
 }
@@ -160,7 +167,9 @@ function afficherMenu() {
         { value: "ajouter", text: "Ajouter un contact" },
         { value: "nombre", text: "Nombre de contacts" }
     ];
-
+    select.style.width = "35%";
+    select.style.backgroundColor = "#B22430";
+    select.style.color = "white";
     options.forEach(opt => {
         const option = document.createElement("option");
         option.value = opt.value;
@@ -168,7 +177,6 @@ function afficherMenu() {
         select.appendChild(option);
     });
 
-   
     menuDiv.appendChild(select);
 
     
