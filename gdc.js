@@ -173,11 +173,6 @@ document.getElementById("iconLancement").addEventListener("click", function(e) {
 icon();
 
 afficherMenu();
-const bordure = document.getElementById("bordure");
-bordure.style.border = "2px solid black";
-bordure.style.height = "90vh";
-bordure.style.width = "60vh";
-bordure.style.margin = "auto";
 function afficherMenu() {
     const menuDiv = document.getElementById("menuGestionnaire");
     /* document.getElementById("iconRegulier") */
@@ -194,7 +189,7 @@ function afficherMenu() {
     img.src = 'icon.PNG';
     menuDiv.appendChild(img);
     img.style.display = "flex";
-    img.style.marginLeft = "35%";
+    img.style.marginLeft = "41%";
     img.style.height = "35vh";
     
     const select = document.createElement("select");
