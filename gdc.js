@@ -39,8 +39,8 @@ function listerContacts(contacts) {
         ul.style.background = "#DDDDDD";
         ul.style.color = "#B22430"
         ul.style.borderRadius = "10px";
-        ul.style.width = "80%";
-        ul.style.marginLeft = "10%";
+        ul.style.width = "95%";
+        ul.style.marginLeft = "2%";
        
     });
     contentDiv.appendChild(ul);
@@ -58,16 +58,16 @@ function ajouterContact() {
 
     form.style.backgroundColor = "#DDDDDD";
     form.style.borderRadius = "10px";
-    form.style.width = "70%";
-    form.style.marginLeft = "15%";
+    form.style.width = "95%";
+    form.style.marginLeft = "2%";
     form.style.height = "35vh";
-    form.style.marginTop = "5%";
+    form.style.marginTop = "2%";
 
 
     const prenomInput = document.createElement("input");
     prenomInput.placeholder = "Prénom";
     form.appendChild(prenomInput);
-    prenomInput.style.marginTop = "15%";
+    prenomInput.style.marginTop = "5%";
     prenomInput.setAttribute('required', '');
 
     const brInput = document.createElement("br");
@@ -76,7 +76,7 @@ function ajouterContact() {
     const nomInput = document.createElement("input");
     nomInput.placeholder = "Nom";
     form.appendChild(nomInput);
-    nomInput.style.marginTop = "10%";
+    nomInput.style.marginTop = "5%";
     nomInput.setAttribute('required', '');
 
     const brInput1 = document.createElement("br");
@@ -89,7 +89,7 @@ function ajouterContact() {
     numeroInput.setAttribute('required', '');
 
     form.appendChild(numeroInput);
-    numeroInput.style.marginTop = "10%";
+    numeroInput.style.marginTop = "5%";
     
 
     const brInput2 = document.createElement("br");
@@ -210,7 +210,8 @@ function afficherMenu() {
         { value: "ajouter", text: "Ajouter un contact" },
         { value: "nombre", text: "Nombre de contacts" }
     ];
-    select.style.width = "80%";
+    select.style.width = "95%";
+    select.style.height = "5vh";
     select.style.backgroundColor = "#B22430";
     select.style.color = "white";
     options.forEach(opt => {
@@ -256,7 +257,7 @@ afficherOption.style.textAlign = "center";
 afficherOption.style.backgroundColor = "#DDDDDD";
 afficherOption.style.color = "#B22430"
 afficherOption.style.borderRadius = "10px";
-afficherOption.style.width = "75%";
+afficherOption.style.width = "95%";
 afficherOption.style.margin = "auto";
 afficherOption.style.height = "15vh";
 afficherOption.style.alignContent = "center";
@@ -295,7 +296,7 @@ function afficherNombreContacts() {
     p.style.backgroundColor = "#DDDDDD";
     p.style.color = "#B22430"
     p.style.borderRadius = "10px";
-    p.style.width = "75%";
+    p.style.width = "95%";
     p.style.margin = "auto";
     p.style.height = "15vh";
     p.style.alignContent = "center";
