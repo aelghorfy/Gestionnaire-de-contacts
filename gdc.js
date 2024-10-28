@@ -73,6 +73,7 @@ function ajouterContact() {
     prenomInput.placeholder = "Prénom";
     form.appendChild(prenomInput);
     prenomInput.style.marginTop = "15%";
+    prenomInput.setAttribute('required', '');
 
     const brInput = document.createElement("br");
     form.appendChild(brInput);
@@ -81,20 +82,26 @@ function ajouterContact() {
     nomInput.placeholder = "Nom";
     form.appendChild(nomInput);
     nomInput.style.marginTop = "10%";
+    nomInput.setAttribute('required', '');
 
     const brInput1 = document.createElement("br");
     form.appendChild(brInput1);
 
     const numeroInput = document.createElement("input");
+    numeroInput.setAttribute('type','tel');
     numeroInput.placeholder = "Numéro de téléphone";
+    numeroInput.setAttribute('pattern','[0-9]{2} [0-9]{2} [0-9]{2} [0-9]{2} [0-9]{2}');
+    numeroInput.setAttribute('required', '');
+
     form.appendChild(numeroInput);
     numeroInput.style.marginTop = "10%";
+    
 
     const brInput2 = document.createElement("br");
     form.appendChild(brInput2);
 
     const btnAjouter = document.createElement("button");
-    btnAjouter.type = "button";
+    btnAjouter.setAttribute('type', 'submit')
    
     btnAjouter.textContent = "Ajouter";
     form.appendChild(btnAjouter);
@@ -109,7 +116,7 @@ function ajouterContact() {
 
     contentDiv.appendChild(form);
 
-    btnAjouter.addEventListener("click", function(e) {
+    btnAjouter.addEventListener("submit", function(e) {
         e.preventDefault();
         const prenom = prenomInput.value;
         const nom = nomInput.value;
@@ -153,10 +160,8 @@ function ajouterContact() {
             })
             .catch(error => {
                 console.error(error);
-                alert("Erreur lors de l'ajout du contact");
+                
             });
-        } else {
-            alert("Tous les champs sont obligatoires !");
         }
     }); 
 }
@@ -177,7 +182,7 @@ afficherMenu();
 const bordure = document.getElementById("bordure");
 bordure.style.border = "2px solid black";
 bordure.style.borderRadius = "10px"
-bordure.style.height = "90vh";
+bordure.style.minHeight = "90vh";
 bordure.style.width = "60vh";
 bordure.style.margin = "auto"
 function afficherMenu() {
@@ -269,6 +274,6 @@ function afficherNombreContacts() {
     p.style.borderRadius = "10px";
     p.style.width = "35%";
     p.style.marginLeft = "33%";
-    p.style.height = "10vh";
+    p.style.heightMib = "10vh";
     contentDiv.appendChild(p);
 }
