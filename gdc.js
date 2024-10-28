@@ -160,8 +160,10 @@ function ajouterContact() {
             })
             .catch(error => {
                 console.error(error);
-                
+                alert("Erreur lors de l'ajout du contact");
             });
+        } else {
+            alert("Tous les champs sont obligatoires !");
         }
     }); 
 }
