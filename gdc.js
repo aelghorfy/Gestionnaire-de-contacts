@@ -44,8 +44,8 @@ function listerContacts(contacts) {
         ul.style.background = "#DDDDDD";
         ul.style.color = "#B22430"
         ul.style.borderRadius = "10px";
-        ul.style.width = "35%";
-        ul.style.marginLeft = "33%";
+        ul.style.width = "80%";
+        ul.style.marginLeft = "10%";
        
     });
     contentDiv.appendChild(ul);
@@ -89,7 +89,7 @@ function ajouterContact() {
 
     const numeroInput = document.createElement("input");
     numeroInput.setAttribute('type','tel');
-    numeroInput.placeholder = "Numéro de téléphone";
+    numeroInput.placeholder = "00 00 00 00 00";
     numeroInput.setAttribute('pattern','[0-9]{2} [0-9]{2} [0-9]{2} [0-9]{2} [0-9]{2}');
     numeroInput.setAttribute('required', '');
 
@@ -116,13 +116,13 @@ function ajouterContact() {
 
     contentDiv.appendChild(form);
 
-    btnAjouter.addEventListener("submit", function(e) {
+    btnAjouter.addEventListener("click", function(e) {
         e.preventDefault();
         const prenom = prenomInput.value;
         const nom = nomInput.value;
         const numero = numeroInput.value;
 
-        if (prenom && nom && numero) {
+        if (prenom && nom && numero && form.checkValidity()) {
             const newContact = {
                 nom: nom,
                 prenom: prenom,
@@ -163,7 +163,7 @@ function ajouterContact() {
                 alert("Erreur lors de l'ajout du contact");
             });
         } else {
-            alert("Tous les champs sont obligatoires !");
+            alert("Respectez le format imposé!! (on a pas galerer pour rien)");
         }
     }); 
 }
@@ -273,9 +273,10 @@ function afficherNombreContacts() {
     p.textContent = `Il y a ${nbContacts} contact(s) dans la liste.`;
     p.style.textAlign = "center";
     p.style.backgroundColor = "#DDDDDD";
+    p.style.color = "#B22430"
     p.style.borderRadius = "10px";
-    p.style.width = "35%";
-    p.style.marginLeft = "33%";
-    p.style.heightMib = "10vh";
+    p.style.width = "65%";
+    p.style.marginLeft = "1%";
+    p.style.height = "15vh";
     contentDiv.appendChild(p);
 }
