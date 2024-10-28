@@ -29,11 +29,6 @@ function listerContacts(contacts) {
     console.log("Contacts à lister:", contacts); 
     const contentDiv = document.getElementById("content");
     contentDiv.innerHTML = ''; 
-    const titre = document.createElement("h2");
-    titre.textContent = "Liste des Contacts";
-    titre.style.color = "#B22430";
-    titre.style.textAlign = "center";
-    contentDiv.appendChild(titre);
 
     const ul = document.createElement("section");
     contacts.forEach(contact => {
@@ -182,8 +177,8 @@ icon();
 
 afficherMenu();
 const bordure = document.getElementById("bordure");
-bordure.style.border = "2px solid black";
-bordure.style.borderRadius = "10px"
+bordure.style.border = "6px solid black";
+bordure.style.borderRadius = "15px"
 bordure.style.minHeight = "90vh";
 bordure.style.width = "60vh";
 bordure.style.margin = "auto"
@@ -203,14 +198,14 @@ function afficherMenu() {
     img.src = 'icon.PNG';
     menuDiv.appendChild(img);
     img.style.display = "flex";
-    img.style.marginLeft = "22%";
-    img.style.height = "35vh";
+    img.style.marginLeft = "34%";
+    img.style.height = "20vh";
     
     const select = document.createElement("select");
     select.id = "menuOptions";
 
     const options = [
-        { value: "", text: "Que voulez vous faire" }, // Option par défaut
+        { value: "choisis", text: "Que voulez vous faire" }, // Option par défaut
         { value: "lister", text: "Lister les contacts" },
         { value: "ajouter", text: "Ajouter un contact" },
         { value: "nombre", text: "Nombre de contacts" }
@@ -233,7 +228,7 @@ function afficherMenu() {
         if (choix) {
             afficherPage(choix); 
         }
-    });
+    }); 
 }
 
 function afficherPage(choix) {
@@ -254,6 +249,35 @@ function afficherPage(choix) {
     }
 }
 
+const afficherOption = document.createElement("p")
+const menuDiv = document.getElementById("menuGestionnaire");
+afficherOption.textContent = `Choisir une option.`;
+afficherOption.style.textAlign = "center";
+afficherOption.style.backgroundColor = "#DDDDDD";
+afficherOption.style.color = "#B22430"
+afficherOption.style.borderRadius = "10px";
+afficherOption.style.width = "75%";
+afficherOption.style.margin = "auto";
+afficherOption.style.height = "15vh";
+afficherOption.style.alignContent = "center";
+afficherOption.style.marginTop = "10%";
+menuDiv.appendChild(afficherOption);
+
+const contentDiv = document.getElementById("content");
+
+
+if (contentDiv.style.display === "block" ){
+    afficherOption.style.display = "none"
+} else {
+    afficherOption.style.display = "block"
+}
+
+const selectElement = document.getElementById("menuGestionnaire");
+
+selectElement.addEventListener("change", function() {
+    afficherOption.style.display = "none";
+});
+
 document.addEventListener('DOMContentLoaded', () => {
     
     fetchEtListerContacts();
@@ -262,11 +286,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function afficherNombreContacts() {
     const contentDiv = document.getElementById("content");
-    const titre = document.createElement("h2");
-    titre.textContent = "Nombre de Contacts";
-    titre.style.color = "#B22430";
-    titre.style.textAlign = "center";
-    contentDiv.appendChild(titre);
+    
 
     const nbContacts = contacts.length; 
     const p = document.createElement("p");
@@ -275,8 +295,10 @@ function afficherNombreContacts() {
     p.style.backgroundColor = "#DDDDDD";
     p.style.color = "#B22430"
     p.style.borderRadius = "10px";
-    p.style.width = "65%";
-    p.style.marginLeft = "1%";
+    p.style.width = "75%";
+    p.style.margin = "auto";
     p.style.height = "15vh";
+    p.style.alignContent = "center";
+    p.style.marginTop = "10%";
     contentDiv.appendChild(p);
 }
