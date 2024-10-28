@@ -63,9 +63,10 @@ function ajouterContact() {
 
     form.style.backgroundColor = "#DDDDDD";
     form.style.borderRadius = "10px";
-    form.style.width = "35%";
-    form.style.marginLeft = "33%";
-    form.style.height = "55vh";
+    form.style.width = "70%";
+    form.style.marginLeft = "15%";
+    form.style.height = "35vh";
+    form.style.marginTop = "5%";
 
 
     const prenomInput = document.createElement("input");
@@ -173,6 +174,12 @@ document.getElementById("iconLancement").addEventListener("click", function(e) {
 icon();
 
 afficherMenu();
+const bordure = document.getElementById("bordure");
+bordure.style.border = "2px solid black";
+bordure.style.borderRadius = "10px"
+bordure.style.height = "90vh";
+bordure.style.width = "60vh";
+bordure.style.margin = "auto"
 function afficherMenu() {
     const menuDiv = document.getElementById("menuGestionnaire");
     /* document.getElementById("iconRegulier") */
@@ -189,7 +196,7 @@ function afficherMenu() {
     img.src = 'icon.PNG';
     menuDiv.appendChild(img);
     img.style.display = "flex";
-    img.style.marginLeft = "41%";
+    img.style.marginLeft = "22%";
     img.style.height = "35vh";
     
     const select = document.createElement("select");
@@ -201,7 +208,7 @@ function afficherMenu() {
         { value: "ajouter", text: "Ajouter un contact" },
         { value: "nombre", text: "Nombre de contacts" }
     ];
-    select.style.width = "35%";
+    select.style.width = "80%";
     select.style.backgroundColor = "#B22430";
     select.style.color = "white";
     options.forEach(opt => {
