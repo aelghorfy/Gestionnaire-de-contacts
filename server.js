@@ -34,7 +34,7 @@ app.post('/ajouter-contact', (req, res) => { //req = requete  res = reponse
         contacts.push(newContact);
 
         // ecrit tableau contacts dans gdc.json  stringify convertit fichier js en json
-        fs.writeFile('gdc.json', JSON.stringify({ contacts }, 2), (err) => {
+        fs.writeFile('gdc.json', JSON.stringify({ contacts },null, 2), (err) => {
             if (err) {
                 return res.status(500).send('Erreur d\'écriture dans le fichier');
             }
@@ -42,6 +42,43 @@ app.post('/ajouter-contact', (req, res) => { //req = requete  res = reponse
         });
     });
 });
+
+// app.post('/supprimer-contact', (req, res) => { //req = requete  res = reponse
+
+//     //on récupere le contenu de la requete (voir requete sur gdc.js l93)
+//     const {prenom,nom} = req.body;
+    
+//     // Lire le fichier existant
+//     fs.readFile('gdc.json', (err, data) => {
+//         if (err) {
+//             return res.status(500).send('Erreur de lecture du fichier');
+//         }
+  
+//        //stoque les données localement dans un tableau
+//         let contacts = [];
+//         try {
+//             contacts = JSON.parse(data).contacts;//convertit json en fichier js
+//         } catch (error) {
+//             return res.status(500).send('Erreur lors de la lecture des contacts');
+//         }
+
+//         const contactIndex = contacts.findIndex(contact => contact.nom === nom && contact.prenom === prenom);
+//         if (contactIndex === -1) {
+//             return res.status(404).send('Contact non trouvé');
+//         }
+
+//         contacts.splice(contactIndex, 1);
+
+//         // ecrit tableau contacts dans gdc.json  stringify convertit fichier js en json
+//         fs.writeFile('gdc.json', JSON.stringify({ contacts }, 2), (err) => {
+//             if (err) {
+//                 return res.status(500).send('Erreur d\'écriture dans le fichier');
+//             }
+//             res.status(200).send('Contact supprimé avec succès');
+//         });
+//     });
+// });
+
 
 //fonction pour que le server soit pret a ecouter les requetes
 app.listen(PORT, () => {

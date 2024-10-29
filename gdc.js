@@ -26,8 +26,9 @@ function fetchEtListerContacts() {
 }
 
 function listerContacts(contacts) {
+    
     const menuDiv = document.getElementById("menuGestionnaire");
-    document.getElementById("menuGestionnaire").style.display = "none";
+    menuDiv.style.display = "none";
     console.log("Contacts à lister:", contacts); 
     const contentDiv = document.getElementById("content");
     contentDiv.innerHTML = ''; 
@@ -54,10 +55,12 @@ function listerContacts(contacts) {
         { value: "ajouter", text: "Ajouter un contact" },
         { value: "nombre", text: "Nombre de contacts" }
     ];
+
     select.style.width = "95%";
     select.style.height = "5vh";
     select.style.backgroundColor = "#B22430";
     select.style.color = "white";
+
     options.forEach(opt => {
         const option = document.createElement("option");
         option.value = opt.value;
@@ -74,11 +77,15 @@ function listerContacts(contacts) {
         }
     }); 
 
+    ordreAlphabetique(contacts);
+
     const ul = document.createElement("section");
+
     contacts.forEach(contact => {
         const li = document.createElement("p");
         li.textContent = `${contact.nom} ${contact.prenom} - ${contact.telephone}`;
         ul.appendChild(li);
+
         contentDiv.style.textAlign = "center";
         ul.style.background = "#DDDDDD";
         ul.style.color = "#B22430"
@@ -90,13 +97,22 @@ function listerContacts(contacts) {
     contentDiv.appendChild(ul);
 }
 
+function ordreAlphabetique(contacts) {
+    let length = contacts.length;
+    for (let i =0;i<length;i++) {
+        for (let j=0;j<(length-i-1); j++) {
+            if (contacts[j].nom.toLowerCase()>contacts[j + 1].nom.toLowerCase()){
+                let stock = contacts[j];
+                contacts[j] = contacts[j + 1];
+                contacts[j + 1]= stock
+            }
+        }
+    }return contacts;
+}
+
 function ajouterContact() {
-    // const contentDiv = document.getElementById("content");
-    // const titre = document.createElement("h2");
-    // titre.textContent = "Ajouter un Nouveau Contact";
-    // titre.style.color = "#B22430";
-    // titre.style.textAlign = "center";
-    // contentDiv.appendChild(titre);
+    
+    console.log('Contacts avant ajout et tri:', contacts);
 
     const menuDiv = document.getElementById("menuGestionnaire");
     document.getElementById("menuGestionnaire").style.display = "none";
@@ -126,10 +142,12 @@ function ajouterContact() {
         { value: "ajouter", text: "Ajouter un contact" },
         { value: "nombre", text: "Nombre de contacts" }
     ];
+
     select.style.width = "95%";
     select.style.height = "5vh";
     select.style.backgroundColor = "#B22430";
     select.style.color = "white";
+
     options.forEach(opt => {
         const option = document.createElement("option");
         option.value = opt.value;
@@ -200,9 +218,7 @@ function ajouterContact() {
     btnAjouter.style.backgroundColor = "#B22430";
     btnAjouter.style.color = "white";
 
-    form.style.textAlign = "center";
-   //contentDiv.innerHTML = "";
-   
+    form.style.textAlign = "center";   
 
     contentDiv.appendChild(form);
 
@@ -269,9 +285,11 @@ document.getElementById("iconLancement").addEventListener("click", function(e) {
     });
 
 }
+
 icon();
 
 afficherMenu();
+
 const bordure = document.getElementById("bordure");
 bordure.style.border = "6px solid black";
 bordure.style.borderRadius = "15px"
@@ -280,9 +298,8 @@ bordure.style.width = "60vh";
 bordure.style.margin = "auto";
 
 function afficherMenu() {
+
     const menuDiv = document.getElementById("menuGestionnaire");
-    /* document.getElementById("iconRegulier") */
-   
     menuDiv.innerHTML = "";
     
     const titre = document.createElement("h1");
@@ -307,10 +324,12 @@ function afficherMenu() {
         { value: "ajouter", text: "Ajouter un contact" },
         { value: "nombre", text: "Nombre de contacts" }
     ];
+
     select.style.width = "95%";
     select.style.height = "5vh";
     select.style.backgroundColor = "#B22430";
     select.style.color = "white";
+
     options.forEach(opt => {
         const option = document.createElement("option");
         option.value = opt.value;
@@ -407,12 +426,14 @@ function afficherNombreContacts() {
         { value: "choisis", text: "Que voulez vous faire" }, // Option par défaut
         { value: "lister", text: "Lister les contacts" },
         { value: "ajouter", text: "Ajouter un contact" },
-        { value: "nombre", text: "Nombre de contacts" }
+        { value: "nombre", text: "Nombre de contacts" },
     ];
+
     select.style.width = "95%";
     select.style.height = "5vh";
     select.style.backgroundColor = "#B22430";
     select.style.color = "white";
+
     options.forEach(opt => {
         const option = document.createElement("option");
         option.value = opt.value;
@@ -428,6 +449,7 @@ function afficherNombreContacts() {
             afficherPage(choix); 
         }
     }); 
+
     const nbContacts = contacts.length; 
     const p = document.createElement("p");
     p.textContent = `Il y a ${nbContacts} contact(s) dans la liste.`;
