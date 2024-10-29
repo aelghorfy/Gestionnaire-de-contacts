@@ -26,9 +26,53 @@ function fetchEtListerContacts() {
 }
 
 function listerContacts(contacts) {
+    const menuDiv = document.getElementById("menuGestionnaire");
+    document.getElementById("menuGestionnaire").style.display = "none";
     console.log("Contacts à lister:", contacts); 
     const contentDiv = document.getElementById("content");
     contentDiv.innerHTML = ''; 
+
+    const titre = document.createElement("h1");
+    titre.textContent = "Liste de Contacts";
+    titre.style.color = "#B22430";
+    contentDiv.style.textAlign = "center";
+    contentDiv.appendChild(titre);
+    
+    const img = document.createElement('img');
+    img.src = 'icon.PNG';
+    contentDiv.appendChild(img);
+    img.style.display = "flex";
+    img.style.marginLeft = "34%";
+    img.style.height = "20vh";
+    
+    const select = document.createElement("select");
+    select.id = "menuOptions";
+
+    const options = [
+        { value: "choisis", text: "Que voulez vous faire" }, // Option par défaut
+        { value: "lister", text: "Lister les contacts" },
+        { value: "ajouter", text: "Ajouter un contact" },
+        { value: "nombre", text: "Nombre de contacts" }
+    ];
+    select.style.width = "95%";
+    select.style.height = "5vh";
+    select.style.backgroundColor = "#B22430";
+    select.style.color = "white";
+    options.forEach(opt => {
+        const option = document.createElement("option");
+        option.value = opt.value;
+        option.textContent = opt.text;
+        select.appendChild(option);
+    });
+
+    contentDiv.appendChild(select);
+
+    select.addEventListener("change", function() {
+        const choix = select.value;
+        if (choix) {
+            afficherPage(choix); 
+        }
+    }); 
 
     const ul = document.createElement("section");
     contacts.forEach(contact => {
@@ -47,12 +91,63 @@ function listerContacts(contacts) {
 }
 
 function ajouterContact() {
+    // const contentDiv = document.getElementById("content");
+    // const titre = document.createElement("h2");
+    // titre.textContent = "Ajouter un Nouveau Contact";
+    // titre.style.color = "#B22430";
+    // titre.style.textAlign = "center";
+    // contentDiv.appendChild(titre);
+
+    const menuDiv = document.getElementById("menuGestionnaire");
+    document.getElementById("menuGestionnaire").style.display = "none";
+    console.log("Contacts à lister:", contacts); 
     const contentDiv = document.getElementById("content");
-    const titre = document.createElement("h2");
-    titre.textContent = "Ajouter un Nouveau Contact";
+    contentDiv.innerHTML = ''; 
+
+    const titre = document.createElement("h1");
+    titre.textContent = "Ajout de Contacts";
     titre.style.color = "#B22430";
-    titre.style.textAlign = "center";
+    contentDiv.style.textAlign = "center";
     contentDiv.appendChild(titre);
+    
+    const img = document.createElement('img');
+    img.src = 'icon.PNG';
+    contentDiv.appendChild(img);
+    img.style.display = "flex";
+    img.style.marginLeft = "34%";
+    img.style.height = "20vh";
+    
+    const select = document.createElement("select");
+    select.id = "menuOptions";
+
+    const options = [
+        { value: "choisis", text: "Que voulez vous faire" }, // Option par défaut
+        { value: "lister", text: "Lister les contacts" },
+        { value: "ajouter", text: "Ajouter un contact" },
+        { value: "nombre", text: "Nombre de contacts" }
+    ];
+    select.style.width = "95%";
+    select.style.height = "5vh";
+    select.style.backgroundColor = "#B22430";
+    select.style.color = "white";
+    options.forEach(opt => {
+        const option = document.createElement("option");
+        option.value = opt.value;
+        option.textContent = opt.text;
+        select.appendChild(option);
+    });
+
+    contentDiv.appendChild(select);
+
+    select.addEventListener("change", function() {
+        const choix = select.value;
+        if (choix) {
+            afficherPage(choix); 
+        }
+    }); 
+
+    
+    
 
     const form = document.createElement("form");
 
@@ -106,7 +201,7 @@ function ajouterContact() {
     btnAjouter.style.color = "white";
 
     form.style.textAlign = "center";
-   contentDiv.innerHTML = "";
+   //contentDiv.innerHTML = "";
    
 
     contentDiv.appendChild(form);
@@ -162,6 +257,7 @@ function ajouterContact() {
         }
     }); 
 }
+
 function icon() {
 document.getElementById("iconLancement").addEventListener("click", function(e) {
     
@@ -181,7 +277,8 @@ bordure.style.border = "6px solid black";
 bordure.style.borderRadius = "15px"
 bordure.style.minHeight = "90vh";
 bordure.style.width = "60vh";
-bordure.style.margin = "auto"
+bordure.style.margin = "auto";
+
 function afficherMenu() {
     const menuDiv = document.getElementById("menuGestionnaire");
     /* document.getElementById("iconRegulier") */
@@ -286,9 +383,51 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 function afficherNombreContacts() {
+    const menuDiv = document.getElementById("menuGestionnaire");
+    document.getElementById("menuGestionnaire").style.display = "none";
     const contentDiv = document.getElementById("content");
-    
 
+    const titre = document.createElement("h1");
+    titre.textContent = "Nombre de Contacts";
+    titre.style.color = "#B22430";
+    contentDiv.style.textAlign = "center";
+    contentDiv.appendChild(titre);
+    
+    const img = document.createElement('img');
+    img.src = 'icon.PNG';
+    contentDiv.appendChild(img);
+    img.style.display = "flex";
+    img.style.marginLeft = "34%";
+    img.style.height = "20vh";
+    
+    const select = document.createElement("select");
+    select.id = "menuOptions";
+
+    const options = [
+        { value: "choisis", text: "Que voulez vous faire" }, // Option par défaut
+        { value: "lister", text: "Lister les contacts" },
+        { value: "ajouter", text: "Ajouter un contact" },
+        { value: "nombre", text: "Nombre de contacts" }
+    ];
+    select.style.width = "95%";
+    select.style.height = "5vh";
+    select.style.backgroundColor = "#B22430";
+    select.style.color = "white";
+    options.forEach(opt => {
+        const option = document.createElement("option");
+        option.value = opt.value;
+        option.textContent = opt.text;
+        select.appendChild(option);
+    });
+
+    contentDiv.appendChild(select);
+
+    select.addEventListener("change", function() {
+        const choix = select.value;
+        if (choix) {
+            afficherPage(choix); 
+        }
+    }); 
     const nbContacts = contacts.length; 
     const p = document.createElement("p");
     p.textContent = `Il y a ${nbContacts} contact(s) dans la liste.`;
